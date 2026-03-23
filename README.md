@@ -18,7 +18,7 @@ High-performance **.NET AOT (Ahead-of-Time)** Web API for managing products, des
 
 ## 🏗️ Project Structure
 
-\`\`\`
+```
 ProductApiAot/
 │
 ├── Endpoints/        # API endpoints (Minimal API)
@@ -32,7 +32,7 @@ ProductApiAot/
 │
 ├── Program.cs        # Entry point
 └── appsettings.json  # Configuration
-\`\`\`
+```
 
 ---
 
@@ -50,26 +50,26 @@ ProductApiAot/
 
 ### 1. Clone repo
 
-\`\`\`bash
+```bash
 git clone https://github.com/mahendraputra21/product-api-aot.git
 cd product-api-aot
-\`\`\`
+```
 
 ---
 
 ### 2. Run with .NET
 
-\`\`\`bash
+```bash
 dotnet run --project ProductApiAot
-\`\`\`
+```
 
 ---
 
 ### 3. Run with Docker
 
-\`\`\`bash
+```bash
 docker-compose up --build
-\`\`\`
+```
 
 ---
 
@@ -98,9 +98,9 @@ docker-compose up --build
 
 Make sure Docker is running, then:
 
-\`\`\`bash
+```bash
 docker-compose up --build
-\`\`\`
+```
 
 ---
 
