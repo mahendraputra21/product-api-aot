@@ -1,0 +1,63 @@
+# =========================
+# .NET Build
+# =========================
+bin/
+obj/
+out/
+publish/
+
+# =========================
+# Visual Studio / VS Code
+# =========================
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# =========================
+# Rider / IntelliJ
+# =========================
+.idea/
+
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Environment Files
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Secrets / Config
+# =========================
+appsettings.Development.json
+appsettings.*.Local.json
+
+# =========================
+# Docker
+# =========================
+docker-compose.override.yml
+
+# =========================
+# Test Results
+# =========================
+TestResults/
+coverage/
+
+# =========================
+# Misc
+# =========================
+*.swp
+*.tmp

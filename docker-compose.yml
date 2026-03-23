@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "YourStrong!Pass123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "14333:1433"
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis-dev
+    ports:
+      - "6379:6379"
+
+  api:
+    image: product-api-aot
+    ports:
+      - "8080:8080"
+    depends_on:
+      - sqlserver
+      - redis

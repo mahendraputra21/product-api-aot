@@ -1,0 +1,5 @@
+20:28:52.109 |V| JetBrains.Threading.ByteBufferAsyncProcessor.ClientSocket-ProtocolDriver.Backend-Sender | :1                             | PAUSE ('Disconnected') :: state=Initialized
+20:28:52.121 |V| JetBrains.Rd.Impl.SocketWire+Client | ClientSocket-ProtocolDriver.Backend-Receiver:9 | ClientSocket-ProtocolDriver.Backend : started
+20:28:52.125 |V| JetBrains.Rd.Impl.SocketWire+Client | ClientSocket-ProtocolDriver.Backend-Receiver:9 | ClientSocket-ProtocolDriver.Backend: connecting to 127.0.0.1:62096.
+20:28:52.127 |V| JetBrains.Rd.Impl.SocketWire+Client | ClientSocket-ProtocolDriver.Backend-Receiver:9 | ClientSocket-ProtocolDriver.Backend : connected
+20:28:52.131 |V| JetBrains.Threading.ByteBufferAsyncProcessor.ClientSocket-ProtocolDriver.Backend-Sender | ClientSocket-ProtocolDriver.Backend-Receiver:9 | RESUME :: state=AsyncProcessing
