@@ -5,24 +5,17 @@ using ProductApiAot.Serialization;
 
 namespace ProductApiAot.Services;
 
-public class CachedProductService : IProductService
+public class CachedProductService
+    (IProductService inner, 
+        ICacheService cache) 
+    : IProductService
 {
-    private readonly IProductService _inner;
-    private readonly ICacheService _cache;
-
-
-    public CachedProductService(IProductService inner, ICacheService cache)
-    {
-        _inner = inner;
-        _cache = cache;
-    }
-
     public async Task<IEnumerable<Product>> GetAllAsync()
     {
         return await CacheHelper.GetOrSetAsync(
-            _cache,
+            cache,
             "products:all",
-            () => _inner.GetAllAsync(),
+            inner.GetAllAsync,
             AppJsonSerializerContext.Default.IEnumerableProduct,
             TimeSpan.FromMinutes(5)
         ) ?? new List<Product>();
@@ -30,15 +23,43 @@ public class CachedProductService : IProductService
 
     public async Task<Product?> GetByIdAsync(int id)
     {
-        return await _inner.GetByIdAsync(id);
+        return await CacheHelper.GetOrSetAsync(
+            cache,
+            $"products:{id}",
+            () => inner.GetByIdAsync(id),
+            AppJsonSerializerContext.Default.Product,
+            TimeSpan.FromMinutes(5)
+        );
     }
 
     public async Task<int> CreateAsync(Product product)
     {
-        var id = await _inner.CreateAsync(product);
+        var id = await inner.CreateAsync(product);
 
-        await _cache.RemoveAsync("products:all");
+        await cache.RemoveAsync("products:all");
 
         return id;
+    }
+
+    public async Task<int> UpdateAsync(Product product)
+    {
+        var rows = await inner.UpdateAsync(product);
+        
+        // invalidate cache
+        await cache.RemoveAsync("products:all");
+        await cache.RemoveAsync($"products:{product.Id}");
+        
+        return rows;
+    }
+
+    public async Task<int> DeleteAsync(int id)
+    {
+        var rows = await inner.DeleteAsync(id);
+        
+        //invalidate cache
+        await cache.RemoveAsync("products:all");
+        await cache.RemoveAsync($"products:{id}");
+        
+        return rows;
     }
 }

@@ -6,19 +6,13 @@ using ProductApiAot.Models;
 
 namespace ProductApiAot.Repositories;
 
-public class ProductRepository : IProductRepository
+public class ProductRepository(IConfiguration configuration) 
+    : IProductRepository
 {
-    private readonly IConfiguration _configuration;
-
-    public ProductRepository(IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
-
     private IDbConnection CreateConnection()
     {
         return new SqlConnection(
-            _configuration.GetConnectionString("SqlServer"));
+            configuration.GetConnectionString("SqlServer"));
     }
     
     [DapperAot]
@@ -53,5 +47,40 @@ public class ProductRepository : IProductRepository
           """;
 
         return await connection.ExecuteScalarAsync<int>(sql, product);
+    }
+    
+    [DapperAot]
+    public async Task<int> UpdateAsync(Product product)
+    {
+        using var connection = CreateConnection();
+
+        var sql = """
+            UPDATE Products 
+            SET Name=@Name, 
+                Price=@Price 
+            WHERE Id=@Id
+            """;
+        
+        var rows = await connection.ExecuteAsync(sql, product);
+
+        if (rows == 0)
+            throw new Exception("Update failed: Product not found");
+        
+        return rows;
+    }
+
+    [DapperAot]
+    public async Task<int> DeleteAsync(int id)
+    {
+        using var connection = CreateConnection();
+
+        var sql = "DELETE FROM Products WHERE Id = @id";
+
+        var rows = await connection.ExecuteAsync(sql, new { id });
+
+        if (rows == 0)
+            throw new Exception("Delete failed: Product not found");
+
+        return rows;
     }
 }

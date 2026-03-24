@@ -32,6 +32,37 @@ public static class ProductEndpoints
             
             return Results.Created($"/products/{id}", product);
         });
+        
+        // Update Product
+        group.MapPut("/{id:int}", async (int id, Product product, IProductService service) =>
+        {
+            if(id != product.Id)
+                return Results.BadRequest("Id Mismatch");
+
+            try
+            {
+                await service.UpdateAsync(product);
+                return Results.NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return Results.NotFound();
+            }
+        });
+
+        // Delete Product
+        group.MapDelete("/{id:int}", async (int id, IProductService service) =>
+        {
+            try
+            {
+                await service.DeleteAsync(id);
+                return Results.NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return Results.NotFound();
+            }
+        });
 
     }
 }
