@@ -1,4 +1,4 @@
-# 🚀 Product API AOT (.NET)
+# 🚀 Product API AOT (.NET 10)
 
 High-performance **.NET AOT (Ahead-of-Time)** Web API for managing products, designed with **minimal API**, **clean architecture**, and **caching support**.
 
