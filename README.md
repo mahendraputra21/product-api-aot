@@ -21,17 +21,45 @@ High-performance **.NET AOT (Ahead-of-Time)** Web API for managing products, des
 ```
 ProductApiAot/
 │
-├── Endpoints/        # API endpoints (Minimal API)
-├── Services/         # Business logic
-├── Repositories/     # Data access layer
-├── Interfaces/       # Contracts
-├── Models/           # Domain models
-├── Extensions/       # DI & infrastructure setup
-├── Serialization/    # AOT JSON context
-├── Helpers/          # Utility classes
+├── Features/
+│   └── Products/
+│       │
+│       ├── Product.cs
+│       │
+│       ├── ProductEndpoints.cs
+│       │
+│       ├── Services/
+│       │   ├── ProductService.cs
+│       │   └── CachedProductService.cs
+│       │
+│       ├── Repositories/
+│       │   └── ProductRepository.cs
+│       │
+│       ├── Interfaces/
+│       │   ├── IProductService.cs
+│       │   └── IProductRepository.cs
 │
-├── Program.cs        # Entry point
-└── appsettings.json  # Configuration
+├── Infrastructure/
+│   ├── Caching/
+│   │   ├── ICacheService.cs
+│   │   └── CacheService.cs
+│   │
+│   ├── Database/
+│   │   └── DbConnectionFactory.cs
+│   │
+│   └── Extensions/
+│       ├── ServiceExtensions.cs
+│       ├── RepositoryExtensions.cs
+│       └── InfrastructureExtensions.cs
+│
+├── Serialization/
+│   └── AppJsonSerializerContext.cs
+│
+├── Helpers/
+│   └── CacheHelper.cs
+│
+├── Program.cs
+└── appsettings.json
 ```
 
 ---
