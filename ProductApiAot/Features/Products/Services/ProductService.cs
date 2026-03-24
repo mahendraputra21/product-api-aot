@@ -1,7 +1,9 @@
-﻿using ProductApiAot.Interfaces;
-using ProductApiAot.Models;
+﻿
 
-namespace ProductApiAot.Services;
+using ProductApiAot.Features.Products.Interfaces;
+using ProductApiAot.Features.Products.Models;
+
+namespace ProductApiAot.Features.Products.Services;
 
 public class ProductService
     (IProductRepository productRepository)

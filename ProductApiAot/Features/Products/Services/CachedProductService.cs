@@ -1,9 +1,10 @@
-﻿using ProductApiAot.Helpers;
-using ProductApiAot.Interfaces;
-using ProductApiAot.Models;
+﻿using ProductApiAot.Features.Products.Interfaces;
+using ProductApiAot.Features.Products.Models;
+using ProductApiAot.Helpers;
+using ProductApiAot.Infrastructure.Caching;
 using ProductApiAot.Serialization;
 
-namespace ProductApiAot.Services;
+namespace ProductApiAot.Features.Products.Services;
 
 public class CachedProductService
     (IProductService inner, 

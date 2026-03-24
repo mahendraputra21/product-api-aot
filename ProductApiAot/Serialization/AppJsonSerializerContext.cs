@@ -1,5 +1,5 @@
 ﻿using System.Text.Json.Serialization;
-using ProductApiAot.Models;
+using ProductApiAot.Features.Products.Models;
 
 namespace ProductApiAot.Serialization;
 

@@ -1,6 +1,6 @@
-﻿using ProductApiAot.Models;
+﻿using ProductApiAot.Features.Products.Models;
 
-namespace ProductApiAot.Interfaces;
+namespace ProductApiAot.Features.Products.Interfaces;
 
 public interface IProductRepository
 {

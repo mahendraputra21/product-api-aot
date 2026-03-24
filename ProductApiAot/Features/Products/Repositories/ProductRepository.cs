@@ -1,24 +1,17 @@
-﻿using System.Data;
-using Dapper;
-using Microsoft.Data.SqlClient;
-using ProductApiAot.Interfaces;
-using ProductApiAot.Models;
+﻿using Dapper;
+using ProductApiAot.Features.Products.Interfaces;
+using ProductApiAot.Features.Products.Models;
+using ProductApiAot.Infrastructure.Database;
 
-namespace ProductApiAot.Repositories;
+namespace ProductApiAot.Features.Products.Repositories;
 
-public class ProductRepository(IConfiguration configuration) 
+public class ProductRepository(IDbConnectionFactory factory) 
     : IProductRepository
 {
-    private IDbConnection CreateConnection()
-    {
-        return new SqlConnection(
-            configuration.GetConnectionString("SqlServer"));
-    }
-    
     [DapperAot]
     public async Task<IEnumerable<Product>> GetAllAsync()
     {
-        using var connection = CreateConnection();
+        using var connection = factory.Create();
         
         return await  connection.QueryAsync<Product>(
             "SELECT Id, Name, Price FROM Products");
@@ -27,7 +20,7 @@ public class ProductRepository(IConfiguration configuration)
     [DapperAot]
     public async Task<Product?> GetByIdAsync(int id)
     {
-        using var connection = CreateConnection();
+        using var connection = factory.Create();
         
         return await connection.QuerySingleOrDefaultAsync<Product>(
             "SELECT Id, Name, Price FROM Products WHERE Id = @id", 
@@ -37,7 +30,7 @@ public class ProductRepository(IConfiguration configuration)
     [DapperAot]
     public async Task<int> CreateAsync(Product product)
     {
-        using var connection = CreateConnection();
+        using var connection = factory.Create();
 
           var sql = """
           INSERT INTO Products (Name,Price)
@@ -52,7 +45,7 @@ public class ProductRepository(IConfiguration configuration)
     [DapperAot]
     public async Task<int> UpdateAsync(Product product)
     {
-        using var connection = CreateConnection();
+        using var connection = factory.Create();
 
         var sql = """
             UPDATE Products 
@@ -72,7 +65,7 @@ public class ProductRepository(IConfiguration configuration)
     [DapperAot]
     public async Task<int> DeleteAsync(int id)
     {
-        using var connection = CreateConnection();
+        using var connection = factory.Create();
 
         var sql = "DELETE FROM Products WHERE Id = @id";
 

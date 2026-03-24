@@ -1,4 +1,4 @@
-﻿namespace ProductApiAot.Models;
+﻿namespace ProductApiAot.Features.Products.Models;
 
 public class Product
 {

@@ -1,5 +1,5 @@
 ﻿using System.Text.Json.Serialization.Metadata;
-using ProductApiAot.Interfaces;
+using ProductApiAot.Infrastructure.Caching;
 
 namespace ProductApiAot.Helpers;
 

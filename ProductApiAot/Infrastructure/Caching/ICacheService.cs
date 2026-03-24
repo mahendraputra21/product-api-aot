@@ -1,7 +1,6 @@
 ﻿using System.Text.Json.Serialization.Metadata;
-using ProductApiAot.Models;
 
-namespace ProductApiAot.Interfaces;
+namespace ProductApiAot.Infrastructure.Caching;
 
 public interface ICacheService
 {

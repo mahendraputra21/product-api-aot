@@ -1,7 +1,7 @@
-﻿using ProductApiAot.Interfaces;
-using ProductApiAot.Models;
+﻿using ProductApiAot.Features.Products.Interfaces;
+using ProductApiAot.Features.Products.Models;
 
-namespace ProductApiAot.Endpoints;
+namespace ProductApiAot.Features.Products.Endpoints;
 
 public static class ProductEndpoints
 {
@@ -10,12 +10,9 @@ public static class ProductEndpoints
         var group = app.MapGroup("/products");
         
         // Get All products
-        group.MapGet("/", async (IProductService service) =>
-        {
-            return await service.GetAllAsync();
-        });
+        group.MapGet("/", async (IProductService service) => await service.GetAllAsync());
         
-        // Get Product By Id
+        // Get Product By Identity
         group.MapGet("/{id:int}", async (int id, IProductService service) =>
         {
             var product = await service.GetByIdAsync(id);

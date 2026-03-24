@@ -1,5 +1,5 @@
-using ProductApiAot.Endpoints;
-using ProductApiAot.Extensions;
+using ProductApiAot.Features.Products.Endpoints;
+using ProductApiAot.Infrastructure.Extensions;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateSlimBuilder(args);

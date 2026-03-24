@@ -1,7 +1,8 @@
-﻿using ProductApiAot.Interfaces;
-using ProductApiAot.Services;
+﻿using ProductApiAot.Features.Products.Interfaces;
+using ProductApiAot.Features.Products.Services;
+using ProductApiAot.Infrastructure.Caching;
 
-namespace ProductApiAot.Extensions;
+namespace ProductApiAot.Infrastructure.Extensions;
 
 public static class ServiceExtensions
 {

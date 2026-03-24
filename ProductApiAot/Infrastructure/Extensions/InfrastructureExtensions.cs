@@ -1,7 +1,8 @@
-﻿using ProductApiAot.Serialization;
+﻿using ProductApiAot.Infrastructure.Database;
+using ProductApiAot.Serialization;
 using StackExchange.Redis;
 
-namespace ProductApiAot.Extensions;
+namespace ProductApiAot.Infrastructure.Extensions;
 
 public static class InfrastructureExtensions
 {
@@ -9,8 +10,11 @@ public static class InfrastructureExtensions
         this IServiceCollection services,
         IConfiguration configuration)
     {
+        // DBConnection
+        services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
+        
         // Redis
-        services.AddSingleton<IConnectionMultiplexer>(sp =>
+        services.AddSingleton<IConnectionMultiplexer>(_ =>
         {
             var config = configuration["Redis:Connection"];
 

@@ -1,19 +1,14 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization.Metadata;
-using ProductApiAot.Interfaces;
 using StackExchange.Redis;
 
-namespace ProductApiAot.Services;
+namespace ProductApiAot.Infrastructure.Caching;
 
-public class CacheService : ICacheService
+public class CacheService
+    (IConnectionMultiplexer redis) : ICacheService
 {
-    private readonly IDatabase _db;
-    
-    public CacheService(IConnectionMultiplexer redis)
-    {
-        _db = redis.GetDatabase();
-    }
-    
+    private readonly IDatabase _db = redis.GetDatabase();
+
     public async Task<T?> GetAsync<T>(string key, JsonTypeInfo<T> typeInfo)
     {
         var value = await _db.StringGetAsync(key);

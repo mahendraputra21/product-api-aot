@@ -19,5 +19,9 @@
     <PackageReference Include="Scalar.AspNetCore" Version="2.13.8" />
     <PackageReference Include="StackExchange.Redis" Version="2.12.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Products\" />
+  </ItemGroup>
   
 </Project>

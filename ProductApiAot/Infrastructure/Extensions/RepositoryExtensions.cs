@@ -1,7 +1,9 @@
-﻿using ProductApiAot.Interfaces;
-using ProductApiAot.Repositories;
+﻿
 
-namespace ProductApiAot.Extensions;
+using ProductApiAot.Features.Products.Interfaces;
+using ProductApiAot.Features.Products.Repositories;
+
+namespace ProductApiAot.Infrastructure.Extensions;
 
 public static class RepositoryExtensions
 {
