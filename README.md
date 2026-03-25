@@ -161,4 +161,4 @@ Backend Engineer (.NET)
 If you find this project useful, consider giving it a star ⭐
 I wrote a detailed article explaining the architecture, performance decisions, and implementation behind this project:
 
-👉 [herei](https://dewa-mahendra.hashnode.dev/building-a-native-aot-net-api-with-dapper-aot)
+👉 [here](https://dewa-mahendra.hashnode.dev/building-a-native-aot-net-api-with-dapper-aot)
